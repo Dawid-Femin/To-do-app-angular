@@ -1,7 +1,7 @@
 <div class="container">
   <nav class="row">
     <div class="nav-wrapper">
-      <span class="brand-logo center">{{ title }}</span>
+      <span class="brand-logo center">{{ config?.title }}</span>
     </div>
   </nav>
 
@@ -44,7 +44,7 @@
   <footer class="page-footer mt-5">
     <div class="footer-copyright">
       <div class="container">
-        {{ footer }} <br> {{ getDate() | date: 'fullDate'}}
+        {{ config?.footer }} <br> {{ config?.date | date: 'fullDate'}}
       </div>
     </div>
   </footer>
