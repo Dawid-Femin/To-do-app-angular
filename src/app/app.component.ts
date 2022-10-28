@@ -7,6 +7,9 @@ import { Task } from './task';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  editMode = false;
+  taskName = 'Dodaj zadanie';
+  taskDate = '';
   config: { [key: string]: string | null } = null;
   tasks: Task[] = [
     {
@@ -34,5 +37,24 @@ export class AppComponent {
         date: new Date().toDateString()
       };
     }, 500)
+  };
+
+  clearTasks() {
+    this.tasks = [];
+  }
+
+  createTask() {
+    const task: Task = {
+      name: this.taskName,
+      deadline: this.taskDate,
+      done: false
+  };
+  this.tasks.push(task);
+  this.taskName = '';
+  this.taskDate = '';
+  }
+
+  switchEditMode() {
+    this.editMode = !this.editMode;
   }
 }
