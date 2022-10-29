@@ -36,7 +36,8 @@ export class AppComponent {
         footer: 'Lista zadań Angular',
         date: new Date().toDateString()
       };
-    }, 500)
+    }, 500);
+    this.sortTasks();
   };
 
   clearTasks() {
@@ -52,9 +53,26 @@ export class AppComponent {
   this.tasks.push(task);
   this.taskName = '';
   this.taskDate = '';
+  this.sortTasks();
   }
 
   switchEditMode() {
     this.editMode = !this.editMode;
+  }
+
+  markTaskAsDone(task: Task) {
+    task.done = true;
+    this.sortTasks();
+  }
+
+  removeTask(index: number) {
+    this.tasks.splice(index, 1)
+    this.sortTasks();
+  }
+
+  private sortTasks() {
+    this.tasks = this.tasks.sort((a: Task, b: Task) => 
+      a.done === b.done ? 0 : a.done ? 1 : -1
+    );
   }
 }
